@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
     memset(message, '\0', 100);
 
-    socketRcv(hsocket, message, strlen(message));
+    socketRcv(hsocket, message, 200);
 
     printf("Message: %s\n", message);
 
