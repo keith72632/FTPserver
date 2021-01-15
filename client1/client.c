@@ -81,12 +81,20 @@ int main(int argc, char *argv[])
     }
     printf("Socket connection successful on port %d\n", PORT);
 
-    printf("Enter an integer: ");
-    fgets(message, 3, stdin);
-    printf("message is: %s\n", message);
+    while (1)
+    {
+        printf("Enter an integer: ");
+        fgets(message, 3, stdin);
+        if (strcmp(message, "0") == 0)
+        {
+            break;
+        }
+        printf("message is: %s\n", message);
 
-    socketSend(hsocket, message, strlen(message));
-    printf("Message sent successfully\n");
+        socketSend(hsocket, message, strlen(message));
+        printf("Message sent successfully\n");
+        remove(message);
+    }
 
     close(hsocket);
     return 0;

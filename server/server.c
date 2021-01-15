@@ -103,6 +103,7 @@ int main(int argc, char *argv[])
         }
 
         printf("Message sent: %s\n", message);
+        remove(message);
     }
     close(sock);
     return 0;

@@ -67,9 +67,16 @@ int main(int argc, char *argv[])
 
     memset(message, '\0', 100);
 
-    socketRcv(hsocket, message, 200);
-
-    printf("Message: %s\n", message);
+    while (1)
+    {
+        socketRcv(hsocket, message, 200);
+        if (strcmp(message, "0") == 0)
+        {
+            break;
+        }
+        printf("Message: %s\n", message);
+        remove(message);
+    }
 
     close(hsocket);
     return 0;
