@@ -1,0 +1,28 @@
+Steps for client 
+1) Create Socket
+2) Connect using connect()
+	-create iRetval;
+	-create struct sockaddr_in remote = {0};
+	-assign sin_addr.s_addr to ip address (inet_addr("ip address"))
+	-assign sin_family to AF_INET
+	-assign sin_port to htons(PORT);
+3) Send/Recv
+	-define int variable and assign -1 for debugging
+	-needs time out functionality
+		-create struct timeval tv
+		-assign tv_sec to time
+		-assign tv_usec to 0
+	-to check for timeout, use setsockopt(hsocket, SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) < 0)
+	-send(socket, request, length of request, 0)
+	-to receive
+		-same steps as send, except recv(socket, response, response size, 0)
+4) Main fucntion
+	-intialize a couple of int varibles for socket and read size to 0
+	-create struct sockaddr_in for server
+	-create char array for message to server and server reply
+	-get input from user with fgets(char array with message to serve, length, stdin)
+	-call sending helper function and pass input from user
+	-call reciver helper function and pass socket, server reply and 200
+	-printf server reply
+	-close the socket
+-To check if there are prcesses already running, us $ps -ef | grep server
