@@ -83,13 +83,14 @@ int main(int argc, char *argv[])
 
     while (1)
     {
-        printf("Enter an integer: ");
-        fgets(message, 3, stdin);
+        printf("Enter message: ");
+        fgets(message, 100, stdin);
         if (strcmp(message, "0") == 0)
         {
+            printf("quitting...\n");
             break;
         }
-        printf("message is: %s\n", message);
+        printf("message: %s\n", message);
 
         socketSend(hsocket, message, strlen(message));
         printf("Message sent successfully\n");

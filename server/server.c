@@ -76,14 +76,16 @@ int main(int argc, char *argv[])
         printf("Recieved from client: %s\n", client_message);
 
         //switch string to number
-        int i = atoi(client_message);
-        printf("Client message before increment: %d\n", i);
-        i++;
-        printf("Client message after increment: %d\n", i);
+        //int i = atoi(client_message);
+        //printf("Client message before increment: %d\n", i);
+        //i++;
+        //printf("Client message after increment: %d\n", i);
 
-        //convert int i back to string
-        sprintf(message, "%d", i);
-        printf("Server message: %s\n", message);
+        ////convert int i back to string
+        //sprintf(message, "%d", i);
+        //printf("Server message: %s\n", message);
+        strcpy(message, client_message);
+        printf("%s\n", message);
         close(sock);
 
         printf("Waiting for another connection...\n");
@@ -103,7 +105,9 @@ int main(int argc, char *argv[])
         }
 
         printf("Message sent: %s\n", message);
-        remove(message);
+        memset(message, '\0', sizeof(message));
+        //strcpy(message, NULL);
+        close(sock);
     }
     close(sock);
     return 0;
